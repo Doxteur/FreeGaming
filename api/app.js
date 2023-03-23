@@ -1,5 +1,6 @@
 // Importation d'Express
 const express = require("express");
+const cors = require("cors");
 
 // Importation des routes
 const versionRoutes = require("./routes/version");
@@ -12,6 +13,9 @@ const mysql = require("./db/db");
 
 // Pour créer l'application express
 const app = express();
+app.use(cors());
+
+
 
 // Importation de body-parser
 const bodyParser = require("body-parser");
