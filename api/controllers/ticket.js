@@ -26,7 +26,7 @@ exports.allTickets = async (req, res) => {
 };
 
 exports.ticketWithId = async (req, res) => {
-  if(req.params.ticketId == null) res.status(400);
+  if(req.params.ticketId == null) return res.status(400);
   const ticketJson = await ticketServices.ticketWithId(req.params.ticketId);
   const messageJson = await messageServices.messagesWithTicketId(req.params.ticketId);
   const userJson = await userServices.userWithEmail(messageJson[0].emailUser);
@@ -37,5 +37,33 @@ exports.ticketWithId = async (req, res) => {
     messages: messageJson,
   };
 
-  res.send(responseJson);
+  return res.send(responseJson);
 };
+
+
+exports.deleteTicket = async (req, res) => {
+  if(req.params.ticketId == null) return res.status(400);
+  db.run(`DELETE FROM TICKET WHERE id='${req.params.ticketId}'`, (err) => {
+    if (err) console.log("Error delete ticket -> "+err);
+  })
+  return res.send('Deleted !');
+};
+
+exports.closeTicket = async (req, res) => {
+  if(req.params.ticketId == null) return res.status(400);
+  db.run(`UPDATE TICKET SET STATUS = "CLOSE" WHERE id='${req.params.ticketId}'`, (err) => {
+    if (err) console.log("Error close ticket -> "+err);
+  })
+
+  return res.send('Closed !');
+}
+
+
+exports.openTicket = async (req, res) => {
+  if(req.params.ticketId == null) return res.status(400);
+  db.run(`UPDATE TICKET SET STATUS = "OPEN" WHERE id='${req.params.ticketId}'`, (err) => {
+    if (err) console.log("Error close ticket -> "+err);
+  })
+  
+  return res.send('Closed !');
+}
