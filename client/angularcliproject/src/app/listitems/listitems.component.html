@@ -1,4 +1,5 @@
 <div class="content">
+    
 
     <div class="products">
         <h1>Contenu du setup</h1>
@@ -9,8 +10,8 @@
             sans fil, un casque sans fil, une souris sans fil et tapis de souris.
         </span>
 
-        <div class="col-md-4" *ngFor="let product of data">
-            <app-itemcontainer></app-itemcontainer>
+        <div *ngFor="let product of data">
+            <app-itemcontainer [data]="product"></app-itemcontainer>
         </div>
 
     </div>

@@ -1,5 +1,12 @@
 import { Component, Input } from '@angular/core';
 
+
+interface Card {
+  "name": string,
+  "image": string,
+  "info": string
+}
+
 @Component({
   selector: 'app-itemcontainer',
   templateUrl: './itemcontainer.component.html',
@@ -8,5 +15,7 @@ import { Component, Input } from '@angular/core';
 export class ItemcontainerComponent {
 
 
-  @Input() data: [] | undefined;
+  @Input()
+  data!: Card;
+
 }
