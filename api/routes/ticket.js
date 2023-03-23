@@ -6,6 +6,8 @@ const ticketController = require("../controllers/ticket");
 
 const router = express.Router();
 
-router.get("/addTicket", ticketController.addTicket);
+router.post("/addTicket", ticketController.addTicket);
+router.get("/ticket", ticketController.allTickets);
+router.get("/ticket/:ticketId", ticketController.ticketWithId);
 // Exportation du module
 module.exports =router;
