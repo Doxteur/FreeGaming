@@ -4,6 +4,7 @@ const express = require("express");
 // Importation des routes
 const versionRoutes = require("./routes/version");
 const ticketRoutes = require("./routes/ticket");
+const userRoutes = require("./routes/user");
 
 // Importation connexion base de donnée mysql
 const mysql = require("./db/db");
@@ -34,5 +35,6 @@ app.use(bodyParser.json());
 //Les routes vers mes controller
 app.use("/api",versionRoutes)
 app.use("/api",ticketRoutes)
+app.use("/api",userRoutes)
 // Exportation de app.js pour pouvoir y accéder depuis un autre fichier
 module.exports = app;

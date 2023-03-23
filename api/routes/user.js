@@ -2,11 +2,10 @@
 const express = require("express");
 
 // Importation du controller ticket.js
-const ticketController = require("../controllers/ticket");
+const userController = require("../controllers/user");
 
 const router = express.Router();
 
-router.post("/addTicket", ticketController.addTicket);
-router.get("/ticket/:ticketId", ticketController.ticketWithId);
+router.get("/user", userController.allUsers);
 // Exportation du module
 module.exports =router;
