@@ -40,7 +40,7 @@ function ModalTicketInfo({ ticketChoisi, modalIsOpen, setmodalIsOpen }) {
             <option value="Open">Open</option>
             <option value="Closed">Closed</option>
           </select>
-          <Chat />
+          <Chat ticketChoisi={ticketChoisi}/>
         </div>
       </Modal>
     </>

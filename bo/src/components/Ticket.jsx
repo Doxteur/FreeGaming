@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 
 function Ticket({ ticketsState, ticketChoisi, setTicketChoisi,setmodalIsOpen }) {
+  useEffect(() => {
+    console.log("ticketChoisi", ticketChoisi);
+  }, [ticketChoisi]);
   return (
     <div>
-      {" "}
       <section className="container mx-auto p-6 font-mono">
         <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
           <div className="w-full overflow-x-auto">
@@ -26,27 +28,26 @@ function Ticket({ ticketsState, ticketChoisi, setTicketChoisi,setmodalIsOpen }) 
                       <div className="text-sm">
                         <div>
                           <p className="font-semibold text-black">
-                            {ticket.sujet}
+                            {ticket.title}
                           </p>
                         </div>
                       </div>
                     </td>
                     <td className="px-4 py-3 text-ms font-semibold border">
-                      22
+                      {ticket.email}
                     </td>
                     <td className="px-4 py-3 text-xs border">
                       <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">
-                        {" "}
-                        Acceptable{" "}
+                        {ticket.status}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-sm border">6/4/2000</td>
+                    <td className="px-4 py-3 text-sm border">{ticket.date}</td>
                     <td className="px-4 py-3 text-sm border">
                       <div className="flex justify-evenly text-sm ">
                         <FaEdit
                           className="w-5 h-5 cursor-pointer"
                           color="#eab308"
-                          onClick={(e) =>{ 
+                          onClick={(e) => { 
                             setTicketChoisi(ticket)
                             setmodalIsOpen(true)
                           }}
