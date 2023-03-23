@@ -6,6 +6,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ListitemsComponent } from './listitems/listitems.component';
 import { ItemcontainerComponent } from './itemcontainer/itemcontainer.component';
 import { GamerinfoComponent } from './gamerinfo/gamerinfo.component';
+import { FreeboxPopComponent } from './freebox-pop/freebox-pop.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { GamerinfoComponent } from './gamerinfo/gamerinfo.component';
     NavbarComponent,
     ListitemsComponent,
     ItemcontainerComponent,
-    GamerinfoComponent
+    GamerinfoComponent,
+    FreeboxPopComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule
