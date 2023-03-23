@@ -13,9 +13,9 @@ exports.addTicket = async (name, lastname, email, title, description) => {
   const ticketId = uuid.v4();
 
   //Ajout du ticket dans la BDD
-  sql = `INSERT INTO TICKET (id,title, date) VALUES(?,?,?)`;
+  sql = `INSERT INTO TICKET (id,title,email,status,date) VALUES(?,?,?,?,?)`;
   const now = new Date();
-  db.run(sql, [ticketId,now.toISOString().slice(0, 19).replace('T', ' '), title], (err) => {
+  db.run(sql, [ticketId, title, email,"OPEN",now.toISOString().slice(0, 19).replace('T', ' ')], (err) => {
     if (err) console.log("Error insert ticket -> "+err.message);
   })
 

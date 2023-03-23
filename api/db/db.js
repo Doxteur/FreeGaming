@@ -5,7 +5,7 @@ const db = new sqlite3.Database("./database/free.db", (err) => {
     console.log('Database start');
 })
 
-ticket = `CREATE TABLE IF NOT EXISTS TICKET (id TEXT,title TEXT, date TEXT)`;
+ticket = `CREATE TABLE IF NOT EXISTS TICKET (id TEXT,title TEXT, email TEXT, status TEXT,date TEXT)`;
 db.run(ticket);
 
 user = `CREATE TABLE IF NOT EXISTS USER (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT, lastname TEXT,email TEXT UNIQUE, role TEXT)`;
