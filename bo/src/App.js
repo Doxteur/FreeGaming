@@ -5,7 +5,7 @@ import TicketList from './components/TicketList';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App h-screen bg-gray-50">
       <SideBar />
       <TicketList />
       </div>

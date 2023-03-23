@@ -8,7 +8,6 @@ function Chat({ ticketChoisi}) {
     fetch(`http://localhost:3001/api/ticket/${ticketChoisi.id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("data", data);
         setChatMessages(data.messages);
         setUser(data.user[0]);
       })
@@ -21,8 +20,7 @@ function Chat({ ticketChoisi}) {
     e.preventDefault();
     const message = e.target.elements[0].value;
 
-    console.log("message", message);
-    const json = JSON.stringify({
+    const jsonToSend = JSON.stringify({
       description: message,
       email: "Support@gmail.com",
     });
@@ -30,14 +28,17 @@ function Chat({ ticketChoisi}) {
     // fetch 
     fetch(`http://localhost:3001/api/writeMessage/${ticketChoisi.id}`, {
       method: "POST",
-      body: json,
+      body: jsonToSend,
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((data) => {
-        console.log("data", data);
-        setChatMessages([...chatMessages, json]);
+        const newMessage = {
+          description: message,
+          emailUser: "Support@gmail.com",
+        }
+        setChatMessages([...chatMessages, newMessage]);
       })
       .catch((error) => {
         console.log(error);
@@ -46,28 +47,21 @@ function Chat({ ticketChoisi}) {
     e.target.elements[0].value = "";
   };
 
-  useEffect(() => {
-    console.log("user", user);
-  }, [user]);
 
   return (
-    <div className="flex antialiased text-gray-800">
+    <div className="flex antialiased text-gray-800 m-auto">
       <div className="flex flex-row">
         <div className="flex flex-col flex-auto p-6">
           <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 max-h-96 p-4 max-w-md ">
 
             {/* Message */}
             {chatMessages && (
-            <div className="overflow-y-scroll">
-              {chatMessages.map((message) => {
+            <div className="overflow-y-scroll break-words">
+              {chatMessages.map((message,index) => {
                 const isSupport = message.emailUser !== user.email;
 
-                console.log("isSupport", isSupport);
-                console.log("message", message.emailUser);
-                console.log("user", user.email);
-
-                return !isSupport ? (
-                  <div className="messageUser" key={message.id}>
+                  return !isSupport ? (
+                  <div className="messageUser" key={index}>
                     <div className="flex items-center ">
                       <div className="w-12 h-12 mx-2">
                         <img
@@ -83,7 +77,7 @@ function Chat({ ticketChoisi}) {
                     </p>
                   </div>
                 ) : (
-                  <div className="messageSupport" key={message.id}>
+                  <div className="messageSupport" key={index}>
                     <div className="flex justify-end items-center ">
                       <div className="w-12 h-12 mx-2 mt-4">
                         <img

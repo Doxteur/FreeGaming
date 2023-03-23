@@ -15,10 +15,43 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-function ModalTicketInfo({ ticketChoisi, modalIsOpen, setmodalIsOpen }) {
-  useEffect(() => {
-    console.log("Mon ticket", ticketChoisi);
-  }, [ticketChoisi]);
+function ModalTicketInfo({ ticketChoisi, modalIsOpen, setmodalIsOpen, setTicketChoisi, setTicketsState }) {
+  const handleChangeStatus = (e) => {
+    // fetch api/openticktet
+    const action =
+      ticketChoisi.status === "OPEN" ? "closeticket" : "openticket";
+    fetch(`http://localhost:3001/api/${action}/${ticketChoisi.id}`, {
+      method: "GET",
+    })
+      .then((data) => {
+        if(ticketChoisi.status === "OPEN"){
+          setTicketsState((prevState) => {
+            const newState = prevState.map((ticket) => {
+              if (ticket.id === ticketChoisi.id) {
+                ticket.status = "CLOSE";
+              }
+              return ticket;
+            });
+            return newState;
+          }
+          );
+        }else{
+          setTicketsState((prevState) => {
+            const newState = prevState.map((ticket) => {
+              if (ticket.id === ticketChoisi.id) {
+                ticket.status = "OPEN";
+              }
+              return ticket;
+            });
+            return newState;
+          }
+          );
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -30,17 +63,19 @@ function ModalTicketInfo({ ticketChoisi, modalIsOpen, setmodalIsOpen }) {
       >
         <h2 className="text-2xl font-bold p-4">Ticket {ticketChoisi.id}</h2>
         {/* input select change ticketChoisi status */}
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           <label htmlFor="status">Status</label>
           <select
             name="status"
             id="status"
             className="border border-gray-300 rounded-md p-2"
-          >
-            <option value="Open">Open</option>
-            <option value="Closed">Closed</option>
+            onChange={(e) => handleChangeStatus(e)}
+            defaultValue={ticketChoisi.status}
+            >
+            <option value="OPEN" >OPEN</option>
+            <option value="CLOSE">CLOSE</option>
           </select>
-          <Chat ticketChoisi={ticketChoisi}/>
+          <Chat ticketChoisi={ticketChoisi} />
         </div>
       </Modal>
     </>
