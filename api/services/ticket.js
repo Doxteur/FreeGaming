@@ -28,3 +28,12 @@ exports.addTicket = async (name, lastname, email, title, description) => {
   
   return 'Ticket créé : '+ ticketId ;
 }
+
+exports.ticketWithId = async (name) => {
+  return new Promise((resolve, reject) => {
+    db.all(`SELECT * FROM TICKET WHERE id ='${name}'`, (err, rows) => {
+      if (err) reject(err);
+      resolve(rows);
+    });
+  });
+}
