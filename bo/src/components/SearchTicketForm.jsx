@@ -10,22 +10,24 @@ function SearchTicketForm() {
     e.preventDefault();
 
     // fetch with ticket id
-
     fetch(`http://localhost:3001/api/ticket/${e.target.elements[0].value}`, {
       method: "GET",
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setTicket(data);
-        setIsSearched(true);
-
+        // if ticket array is empty
+        if (data.ticket.length === 0) {
+          alert("Ticket introuvable");
+          return;
+        }else{
+          setTicket(data);
+          setIsSearched(true);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
-
-  
   };
   return (
     <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">

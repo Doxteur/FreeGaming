@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import SearchBarTicket from "./SearchBarTicket";
-
-import { tickets } from "../data/tickets";
 import Ticket from "./Ticket";
 import ModalTicketInfo from "./ModalTicketInfo";
 
