@@ -4,7 +4,8 @@ import { Component, Input } from '@angular/core';
 interface Card {
   "name": string,
   "image": string,
-  "info": string
+  "info": string,
+  'type': number,
 }
 
 @Component({
@@ -15,7 +16,6 @@ interface Card {
 export class ItemcontainerComponent {
 
 
-  @Input()
-  data!: Card;
+  @Input() data!: Card;
 
 }

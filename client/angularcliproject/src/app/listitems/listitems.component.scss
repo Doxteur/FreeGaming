@@ -2,4 +2,25 @@
     display: flex;
     justify-content: center;
     text-align: center;
+
+    .products{
+        width: 70%;
+
+        h1{
+            text-align: left;
+            font-family: 'Helvetica Neue';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 30px;
+            background: linear-gradient(45deg, #CCEFFF 0%, #60CAFC 50%, #2F65FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .container-describe{
+            width: 75%;
+            font-size: 19px;
+        }
+    }
 }
