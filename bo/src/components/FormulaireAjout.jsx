@@ -110,20 +110,19 @@ function FormulaireAjout() {
                       </div>
                       {/* Title */}
                       <div class="relative">
-                        <input
-                          autocomplete="off"
-                          id="title"
-                          name="title"
-                          type="text"
-                          class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600 focus:border-b-secondary"
-                          placeholder="title"
-                        />
-                        <label
+                      <label
                           for="title"
-                          class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                          class=" text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
                         >
-                          Mot de passe
+                          Title
                         </label>
+
+                        <select className="w-full border-b-1">
+                          <option value="Problème Technique">Problème Technique</option>
+                          <option value="Problème de livraison">Problème de livraison</option>
+                          <option value="Problème de réseau">Problème de réseau</option>
+                          <option value="Autre">Autre</option>
+                        </select>
                       </div>
                       {/* Description du problème */}
                       <div class="relative">

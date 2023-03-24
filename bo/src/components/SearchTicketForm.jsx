@@ -70,6 +70,15 @@ function SearchTicketForm() {
                     </button>
                   </div>
                 </form>
+                {/*  Show status */}
+                {isSearched && (
+                    <h1 className={`${ticket.ticket[0].status === "OPEN" ? "bg-green-500" : "bg-red-500" } p-2 mt-2 text-white w-fit rounded-xl`}>
+                      {ticket.ticket[0].status === "OPEN"
+                        ? "Ticket ouvert"
+                        : "Ticket fermé"}
+                    </h1>
+                )}
+                        
                 {isSearched && <Chat ticketChoisi={ticket.ticket[0]} origine={ticket.user[0].email} />}
               </div>
             </div>
