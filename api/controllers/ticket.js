@@ -6,7 +6,7 @@ const db = require("../db/db");
 
 exports.addTicket = async (req, res) => {
   const ticketId = await ticketServices.addTicket(req.body.name, req.body.lastname, req.body.email, req.body.title, req.body.description)
-  res.status(200).send(ticketId);
+  res.JSON({ Tickets: ticketId});
 };
 
 exports.allTickets = async (req, res) => {
