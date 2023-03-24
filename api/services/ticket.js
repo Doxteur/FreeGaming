@@ -22,7 +22,7 @@ exports.addTicket = async (name, lastname, email, title, description) => {
   //AJOUT DE L'UTILISATEUR
   userServices.addUser(name, lastname, email, "CLIENT");
   //AJOUT DU MESSAGE CHANGER USER ID;
-  messageServices.addMessage(description,email,ticketId);
+  messageServices.addMessage(description,email,ticketId,null);
   //LIER USER_TICKET
   UserticketServices.addUserTicket(email,ticketId, now.toISOString().slice(0, 19).replace('T', ' à '));
   

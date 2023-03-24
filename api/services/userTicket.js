@@ -10,6 +10,6 @@ exports.addUserTicket = async (emailUser, idTicket, date) => {
     if (err) console.log("Error insert user ticket -> "+err.message);
   })
   
-  //mailServices.sendMail(emailUser, idTicket, date);
+  mailServices.sendMail(emailUser, idTicket, date);
   return 'Liaison faite !';
 }

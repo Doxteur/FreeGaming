@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 
 exports.sendMail = async (emailUser, ticketId,date) => {
+  console.log('SEND MAIL');
   // Créer un objet transporter avec les informations de connexion SMTP
   let transporter = nodemailer.createTransport({
     host: "smtp.office365.com",
@@ -11,7 +12,7 @@ exports.sendMail = async (emailUser, ticketId,date) => {
       pass: "ynov2023*" // mot de passe de votre compte
     },
     tls: {
-      ciphers: "SSLv3"
+      ciphers: "SSLv3",
     }
   });
 
@@ -20,7 +21,7 @@ exports.sendMail = async (emailUser, ticketId,date) => {
     from: "sav48ynov@outlook.com",
     to: emailUser,
     subject: 'Ticket créé',
-    text: "Votre ticket est créé le "+date+". Vous pouvez consulter le ticket ici : "+ticketId,
+    text: "Votre ticket est créé le "+date+". Le numéro du ticket est "+ticketId+".",
   };
 
   // Envoyer l'email
@@ -34,6 +35,7 @@ exports.sendMail = async (emailUser, ticketId,date) => {
 }
 
 exports.sendMailWhenAdminSendMessage = async (emailUser, ticketId,date) => {
+  console.log("send mail reponse admin")
   // Créer un objet transporter avec les informations de connexion SMTP
   let transporter = nodemailer.createTransport({
     host: "smtp.office365.com",
