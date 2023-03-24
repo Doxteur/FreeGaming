@@ -75,7 +75,7 @@ function ModalTicketInfo({ ticketChoisi, modalIsOpen, setmodalIsOpen, setTicketC
             <option value="OPEN" >OPEN</option>
             <option value="CLOSE">CLOSE</option>
           </select>
-          <Chat ticketChoisi={ticketChoisi} />
+          <Chat ticketChoisi={ticketChoisi} origine={"Support@gmail.com"}/>
         </div>
       </Modal>
     </>

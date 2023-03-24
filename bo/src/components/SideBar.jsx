@@ -1,5 +1,7 @@
 import React from "react";
 import { BiSupport } from "react-icons/bi";
+import { FiLogOut } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 function SideBar() {
   return (
@@ -37,6 +39,13 @@ function SideBar() {
 
                 <span class="mx-2 text-sm font-medium">Dashboard</span>
             </a>
+            <Link to="/login">
+            <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lghover:bg-gray-100 hover:text-gray-700 my-2" href="#">
+                
+                <FiLogOut className="w-5 h-5" />
+                <span class="mx-2 text-sm font-medium">Se Déconnecter</span>
+            </a>
+            </Link>
 
 
         </nav>

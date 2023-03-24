@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 
-function Chat({ ticketChoisi}) {
+function Chat({ ticketChoisi,origine}) {
   const [chatMessages, setChatMessages] = useState([]);
   const [user, setUser] = useState({});
 
@@ -22,7 +22,8 @@ function Chat({ ticketChoisi}) {
 
     const jsonToSend = JSON.stringify({
       description: message,
-      email: "Support@gmail.com",
+      email: origine,
+      emailUser: user.email,
     });
 
     // fetch 
@@ -36,7 +37,7 @@ function Chat({ ticketChoisi}) {
       .then((data) => {
         const newMessage = {
           description: message,
-          emailUser: "Support@gmail.com",
+          emailUser: origine,
         }
         setChatMessages([...chatMessages, newMessage]);
       })

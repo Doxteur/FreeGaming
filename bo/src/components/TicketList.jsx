@@ -31,10 +31,13 @@ function TicketList() {
 
   return (
     <div className=" ">
-      <h1 className="text-3xl font-bold p-4 font-medium">Liste des Tickets</h1>
+      <h1 className="text-3xl font-bold p-4 ">Liste des Tickets</h1>
+
       <SearchBarTicket ticketsState={ticketsState} setTicketsFilter={setTicketsFilter} />
+
+      {/* Liste des Tickets */}
       <div className="flex flex-col">
-        {ticketsState && ticketsState.length > 0 &&  (
+        {ticketsState && ticketsState.length > 0 ?  (
           <Ticket 
           ticketsState={ticketsState} 
           setTicketsState={setTicketsState} 
@@ -44,8 +47,14 @@ function TicketList() {
           ticketsFilter={ticketsFilter}
           setTicketsFilter={setTicketsFilter} 
           />
+        ):(
+          <div className="flex justify-center items-center h-96">
+            <h1 className="text-2xl font-bold">Aucun ticket trouvé</h1>
+          </div>
         )}
       </div>
+
+      {/* Modal */}
       {modalIsOpen && (
         <ModalTicketInfo
           setTicketsState={setTicketsState}
