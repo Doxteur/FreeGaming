@@ -71,7 +71,7 @@ function Chat({ ticketChoisi,origine}) {
                           className="w-full h-full object-cover rounded-full"
                         />
                       </div>
-                      <h1 className="font-bold mx-2">{user.name}</h1>
+                      <h1 className="font-bold mx-2">{user.lastname} {user.name}</h1>
                     </div>
                     <p className="m-2 bg-white rounded-xl p-2">
                       {message.description}
