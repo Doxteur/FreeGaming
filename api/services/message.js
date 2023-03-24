@@ -9,7 +9,7 @@ exports.addMessage = async (description, email, idTicket, emailUser) => {
   db.run(sql, [description, now.toISOString().slice(0, 19).replace('T', ' '),email, idTicket], (err) => {
     if (err) console.log("Error insert message -> "+err.message);
   })
-  if(emailUser != null) mailServices.sendMailWhenAdminSendMessage(emailUser, idTicket,now.toISOString().slice(0, 19).replace('T', ' à ')) 
+  if(emailUser != email) mailServices.sendMailWhenAdminSendMessage(emailUser, idTicket,now.toISOString().slice(0, 19).replace('T', ' à ')) 
   return 'Message created !';
 }
 
