@@ -26,7 +26,7 @@ exports.addTicket = async (name, lastname, email, title, description) => {
   //LIER USER_TICKET
   UserticketServices.addUserTicket(email,ticketId, now.toISOString().slice(0, 19).replace('T', ' à '));
   
-  return 'Ticket créé : '+ ticketId ;
+  return ticketId ;
 }
 
 exports.ticketWithId = async (name) => {

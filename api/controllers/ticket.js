@@ -5,24 +5,23 @@ const userServices =require('../services/user')
 const db = require("../db/db");
 
 exports.addTicket = async (req, res) => {
-  res.status(200).send(await ticketServices.addTicket(req.body.name, req.body.lastname, req.body.email, req.body.title, req.body.description));
+  const ticketId = await ticketServices.addTicket(req.body.name, req.body.lastname, req.body.email, req.body.title, req.body.description)
+  res.status(200).send(ticketId);
 };
 
 exports.allTickets = async (req, res) => {
-  const data = [];
-  new Promise((resolve, reject) => {
-    db.all('SELECT * FROM TICKET', (err, rows) => {
-      if (err) reject(err);
-      rows.forEach((row) => {
-        data.push(row);
+  try {
+    const data = await new Promise((resolve, reject) => {
+      db.all("SELECT * FROM ticket ORDER BY datetime(date) DESC;", (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
       });
-      resolve();
     });
-  }).then(() => {
-    res.json({
-      Tickets: data,
-    });
-  }).catch(err => console.error(err));
+    res.json({ Tickets: data });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Une erreur s'est produite lors de la récupération des tickets.");
+  }
 };
 
 exports.ticketWithId = async (req, res) => {
